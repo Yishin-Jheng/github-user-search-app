@@ -129,12 +129,12 @@ function InfoBlock(prop) {
 }
 
 function InfoItems(prop) {
-  const { icon, content, className } = prop;
+  const { icon, content } = prop;
   return (
     <div
       className={`flex gap-[1.6rem] items-center ${
         content ? "" : "opacity-60"
-      } ${className}`}
+      }`}
     >
       {icon}{" "}
       <span className="block break-all text-body text-darkblue dark:text-lightgrey1 mobile:mobile:text-s">
