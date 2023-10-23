@@ -52,7 +52,7 @@ function App() {
 
   return (
     <div className={`${darkTheme ? "dark" : ""}`}>
-      <div className="w-screen h-screen bg-lightgrey2 dark:bg-darkgrey1 transition-all duration-300">
+      <div className="w-full h-full bg-lightgrey2 dark:bg-darkgrey1 transition-all duration-300">
         <div className="font-mono flex flex-col gap-[2.4rem] justify-center items-center m-auto max-w-[71rem] h-screen tablet:max-w-[58rem] semimobile:w-[calc(100%-4rem)]">
           <Header darkTheme={darkTheme} handleDarkTheme={handleDarkTheme} />
           <SearchBar handleSubmit={handleSubmit} errorOrNot={errorOrNot} />
