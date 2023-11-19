@@ -35,8 +35,8 @@ Users should be able to:
 
 ### Links
 
-- Solution URL: [Live site on Netlify](https://github-user-search-yishin.netlify.app/)
-- Live Site URL: [Add live site URL here](https://your-live-site-url.com)
+- Solution URL: [Solution page on Frontend Mentor](https://www.frontendmentor.io/solutions/user-search-app-built-by-reactjs-and-tailwind-css-frRM6Pi14x)
+- Live Site URL: [Live site on Netlify](https://github-user-search-yishin.netlify.app/)
 
 ## My process
 
