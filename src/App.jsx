@@ -41,21 +41,23 @@ function App() {
     }
   };
 
-  const handleSubmit = (username) => {
-    setErrorOrNot(false);
-    fetchUserData(username);
-  };
-
-  const handleDarkTheme = () => {
-    setDarkTheme(!darkTheme);
-  };
-
   return (
     <div className={`${darkTheme ? "dark" : ""}`}>
       <div className="w-full h-full bg-lightgrey2 dark:bg-darkgrey1 transition-all duration-300">
-        <div className="font-mono flex flex-col gap-[2.4rem] justify-center items-center m-auto max-w-[71rem] h-screen tablet:max-w-[58rem] semimobile:w-[calc(100%-4rem)]">
-          <Header darkTheme={darkTheme} handleDarkTheme={handleDarkTheme} />
-          <SearchBar handleSubmit={handleSubmit} errorOrNot={errorOrNot} />
+        <div className="flex flex-col gap-[2.4rem] justify-center items-center m-auto max-w-284 h-screen max-tablet:max-w-232 max-semimobile:w-[calc(100%-4rem)]">
+          <Header
+            darkTheme={darkTheme}
+            handleDarkTheme={() =>
+              setDarkTheme((preDarkTheme) => !preDarkTheme)
+            }
+          />
+          <SearchBar
+            handleSubmit={(username) => {
+              setErrorOrNot(false);
+              fetchUserData(username);
+            }}
+            errorOrNot={errorOrNot}
+          />
           <Main userData={userData} />
         </div>
       </div>
