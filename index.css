@@ -1,0 +1,63 @@
+@import "tailwindcss";
+
+@custom-variant dark (&:where(.dark, .dark *));
+
+@theme {
+  --color-red: #ea5555;
+  --color-blue: #0079ff;
+  --color-lightblue: #60abff;
+  --color-darkblue: #4b6a9b;
+  --color-greyblue: #90a4d4;
+  --color-white: #fff;
+  --color-darkgrey1: #141d2f;
+  --color-darkgrey2: #2b3442;
+  --color-darkgrey3: #1e2a47;
+  --color-lightgrey1: #fefefe;
+  --color-lightgrey2: #f6f8ff;
+  --color-lightgrey3: #697c9a;
+
+  --text-xl: 2.6rem;
+  --text-xl--line-height: 3.8rem;
+  --text-l: 2.2rem;
+  --text-l--line-height: 3.3rem;
+  --text-m: 1.6rem;
+  --text-m--line-height: 2.4rem;
+  --text-s: 1.3rem;
+  --text-s--line-height: 2rem;
+  --text-xs: 1.1rem;
+  --text-xs--line-height: 1.7rem;
+  --text-body: 1.5rem;
+  --text-body--line-height: 2.5rem;
+
+  --shadow-darkgrey:
+    0 20px 25px -5px rgb(75 106 155 / 0.1),
+    0 8px 10px -6px rgb(75 106 155 / 0.1);
+  --shadow-lightgrey:
+    0 20px 25px -5px rgb(75 106 155 / 0.1),
+    0 8px 10px -6px rgb(246 288 255 / 0.1);
+
+  --breakpoint-tablet: 800px;
+  --breakpoint-semimobile: 675px;
+  --breakpoint-mobile: 600px;
+}
+
+@layer base {
+  html {
+    font-size: 62.5%; /* 10px */
+    font-family: "Space Mono", monospace;
+  }
+
+  input:-webkit-autofill,
+  input:-webkit-autofill:hover,
+  input:-webkit-autofill:focus {
+    -webkit-box-shadow: 0 0 0 1000px theme("colors.white") inset !important;
+    -webkit-text-fill-color: theme("colors.darkgrey1") !important;
+  }
+
+  .dark input:-webkit-autofill,
+  .dark input:-webkit-autofill:hover,
+  .dark input:-webkit-autofill:focus {
+    -webkit-box-shadow: 0 0 0 1000px theme("colors.darkgrey3") inset !important;
+    -webkit-text-fill-color: theme("colors.lightgrey1") !important;
+  }
+}
