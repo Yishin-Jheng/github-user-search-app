@@ -1,6 +1,7 @@
 import { ReactNode } from "react";
 import { UserData } from "../App";
 import { NumberKeysOf, StringKeysOf } from "../types";
+
 import { locationIcon, twitterIcon, websiteIcon, companyIcon } from "./Icons";
 import InfoBlock from "./InfoBlock";
 import InfoItem from "./InfoItem";
