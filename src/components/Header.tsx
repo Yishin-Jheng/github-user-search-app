@@ -1,7 +1,12 @@
 import { lightIcon, darkIcon } from "./Icons";
 
-function Header(prop) {
-  const { darkTheme, handleDarkTheme } = prop;
+interface HeaderProps {
+  darkTheme: boolean;
+  handleDarkTheme: () => void;
+}
+
+function Header(props: HeaderProps) {
+  const { darkTheme, handleDarkTheme } = props;
 
   return (
     <header className="flex justify-between w-full mb-[1.2rem]">

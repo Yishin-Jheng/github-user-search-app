@@ -1,5 +1,13 @@
-function InfoItem(prop) {
-  const { icon, content } = prop;
+import { ReactNode } from "react";
+
+interface InfoItemProps {
+  icon: React.JSX.Element;
+  content: ReactNode;
+}
+
+function InfoItem(props: InfoItemProps) {
+  const { icon, content } = props;
+
   return (
     <div
       className={`flex gap-[1.6rem] items-center ${

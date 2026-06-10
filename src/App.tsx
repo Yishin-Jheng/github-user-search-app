@@ -4,32 +4,48 @@ import Header from "./components/Header";
 import SearchBar from "./components/SearchBar";
 import Main from "./components/Main";
 
+export interface UserData {
+  avatar: string;
+  name: string;
+  loginName: string;
+  created: string;
+  bio: string;
+  repos: number;
+  followers: number;
+  following: number;
+  location: string;
+  twitter: string;
+  url: string;
+  company: string;
+}
+
+const octokit = new Octokit({
+  auth: import.meta.env.VITE_OCTOKIT_TOKEN,
+});
+
 function App() {
   const [darkTheme, setDarkTheme] = useState(false);
-  const [userData, setUserData] = useState(null);
+  const [userData, setUserData] = useState<UserData | null>(null);
   const [errorOrNot, setErrorOrNot] = useState(false);
-  const octokit = new Octokit({
-    auth: import.meta.env.OCTOKIT_TOKEN,
-  });
 
-  const fetchUserData = async function (username) {
+  const fetchUserData = async function (username: string) {
     try {
       const result = await octokit.request("GET /users/{username}", {
         username: username,
       });
       const userInfo = {
         avatar: result.data.avatar_url,
-        name: result.data.name,
+        name: result.data.name ?? "",
         loginName: result.data.login,
         created: result.data.created_at,
-        bio: result.data.bio,
+        bio: result.data.bio ?? "",
         repos: result.data.public_repos,
         followers: result.data.followers,
         following: result.data.following,
-        location: result.data.location,
-        twitter: result.data.twitter_username,
-        url: result.data.blog,
-        company: result.data.company,
+        location: result.data.location ?? "",
+        twitter: result.data.twitter_username ?? "",
+        url: result.data.blog ?? "",
+        company: result.data.company ?? "",
       };
 
       setUserData(userInfo);

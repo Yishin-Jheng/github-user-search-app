@@ -1,5 +1,11 @@
-function InfoBlock(prop) {
-  const { label, value } = prop;
+interface InfoBlockProps {
+  label: string;
+  value: number;
+}
+
+function InfoBlock(props: InfoBlockProps) {
+  const { label, value } = props;
+
   return (
     <div className="text-s text-darkblue dark:text-lightgrey1 flex flex-col max-mobile:text-xs max-mobile:gap-[5px]">
       {label}

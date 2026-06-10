@@ -1,38 +1,58 @@
+import { ReactNode } from "react";
+import { UserData } from "../App";
+import { NumberKeysOf, StringKeysOf } from "../types";
 import { locationIcon, twitterIcon, websiteIcon, companyIcon } from "./Icons";
 import InfoBlock from "./InfoBlock";
 import InfoItem from "./InfoItem";
 
-function Main(prop) {
-  const { userData } = prop;
-  const infoBlockSettings = [
-    { label: "Repos", valueKey: "repos" },
-    { label: "Followers", valueKey: "followers" },
-    { label: "Following", valueKey: "following" },
-  ];
-  const infoItemSettings = [
-    { icon: locationIcon, valueKey: "location" },
-    {
-      icon: twitterIcon,
-      valueKey: "twitter",
-      formatter: (value) => (value ? `@${value}` : null),
-    },
-    {
-      icon: websiteIcon,
-      valueKey: "url",
-      formatter: (value) =>
-        value ? (
-          <a
-            className="hover:underline"
-            href={value}
-            target="_blank"
-            rel="noreferrer noopenner"
-          >
-            {value}
-          </a>
-        ) : null,
-    },
-    { icon: companyIcon, valueKey: "company" },
-  ];
+interface MainProps {
+  userData: UserData | null;
+}
+
+interface InfoBlockSetting {
+  label: string;
+  valueKey: NumberKeysOf<UserData>;
+}
+
+interface InfoItemSetting {
+  icon: React.JSX.Element;
+  valueKey: StringKeysOf<UserData>;
+  formatter?: (value: string) => ReactNode;
+}
+
+const infoBlockSettings: InfoBlockSetting[] = [
+  { label: "Repos", valueKey: "repos" },
+  { label: "Followers", valueKey: "followers" },
+  { label: "Following", valueKey: "following" },
+];
+
+const infoItemSettings: InfoItemSetting[] = [
+  { icon: locationIcon, valueKey: "location" },
+  {
+    icon: twitterIcon,
+    valueKey: "twitter",
+    formatter: (value) => (value ? `@${value}` : null),
+  },
+  {
+    icon: websiteIcon,
+    valueKey: "url",
+    formatter: (value) =>
+      value ? (
+        <a
+          className="hover:underline"
+          href={value}
+          target="_blank"
+          rel="noreferrer noopener"
+        >
+          {value}
+        </a>
+      ) : null,
+  },
+  { icon: companyIcon, valueKey: "company" },
+];
+
+function Main(props: MainProps) {
+  const { userData } = props;
 
   return (
     <main className="w-full bg-white dark:bg-darkgrey3 p-[4.3rem] rounded-2xl shadow-darkgrey dark:shadow-lightgrey grid grid-cols-[117px_1fr] gap-x-16 transition-all duration-300 max-mobile:grid-cols-[70px_1fr] max-mobile:gap-x-10 max-mobile:px-10 max-mobile:py-12">
@@ -50,7 +70,7 @@ function Main(prop) {
               {`Joined ${new Date(userData.created)
                 .toUTCString()
                 .split(" ")
-                .filter((str, i) => i > 0 && i < 4)
+                .filter((_, i) => i > 0 && i < 4)
                 .join(" ")}`}
             </p>
             <p className="text-m text-blue col-span-full max-tablet:row-start-2 max-mobile:text-s">
@@ -62,27 +82,29 @@ function Main(prop) {
           </p>
 
           <section className="bg-lightgrey2 dark:bg-darkgrey1 px-[3.2rem] py-[1.6rem] rounded-2xl flex gap-36 items-center col-start-2 transition-all duration-300 max-tablet:col-span-full max-semimobile:justify-evenly max-mobile:text-center max-mobile:gap-4 max-mobile:justify-between max-mobile:p-8">
-            {infoBlockSettings.map((item) => (
-              <InfoBlock
-                key={`${item.label}-${item.valueKey}`}
-                label={item.label}
-                value={userData[item.valueKey]}
-              />
-            ))}
+            {infoBlockSettings.map((item) => {
+              const value = userData[item.valueKey];
+              return (
+                <InfoBlock
+                  key={item.valueKey}
+                  label={item.label}
+                  value={value}
+                />
+              );
+            })}
           </section>
 
           <section className="grid grid-cols-[1fr_220px] gap-x-6 gap-y-6 mt-12 col-start-2 max-tablet:col-span-full max-mobile:grid-cols-1">
-            {infoItemSettings.map((item) => (
-              <InfoItem
-                key={`${item.icon}-${item.valueKey}`}
-                icon={item.icon}
-                content={
-                  item.formatter
-                    ? item.formatter(userData[item.valueKey])
-                    : userData[item.valueKey]
-                }
-              />
-            ))}
+            {infoItemSettings.map((item) => {
+              const value = userData[item.valueKey];
+              return (
+                <InfoItem
+                  key={item.valueKey}
+                  icon={item.icon}
+                  content={item.formatter ? item.formatter(value) : value}
+                />
+              );
+            })}
           </section>
         </>
       )}

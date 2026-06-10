@@ -1,11 +1,16 @@
 import { useState } from "react";
 import { searchIcon } from "./Icons";
 
-function SearchBar(prop) {
-  const { handleSubmit, errorOrNot } = prop;
+interface SearchBarProps {
+  handleSubmit: (username: string) => void;
+  errorOrNot: boolean;
+}
+
+function SearchBar(props: SearchBarProps) {
+  const { handleSubmit, errorOrNot } = props;
   const [input, setInput] = useState("");
 
-  const handleFormSubmit = function (e) {
+  const handleFormSubmit = function (e: React.FormEvent<HTMLFormElement>) {
     e.preventDefault();
     if (input) handleSubmit(input);
   };
