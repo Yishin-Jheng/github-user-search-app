@@ -5,6 +5,3 @@
 [build.environment]
   NODE_VERSION = "20"
   SECRETS_SCAN_OMIT_KEYS = "VITE_OCTOKIT_TOKEN"
-
-[functions]
-  directory = "netlify/functions"
