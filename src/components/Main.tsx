@@ -97,12 +97,12 @@ function Main(props: MainProps) {
 
           <section className="grid grid-cols-[1fr_220px] gap-x-6 gap-y-6 mt-12 col-start-2 max-tablet:col-span-full max-mobile:grid-cols-1">
             {infoItemSettings.map((item) => {
-              const value = userData[item.valueKey];
+              const content = userData[item.valueKey];
               return (
                 <InfoItem
                   key={item.valueKey}
                   icon={item.icon}
-                  content={item.formatter ? item.formatter(value) : value}
+                  content={item.formatter ? item.formatter(content) : content}
                 />
               );
             })}
